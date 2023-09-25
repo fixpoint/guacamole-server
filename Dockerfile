@@ -39,7 +39,7 @@ RUN apk add --no-cache                \
         libtool                       \
         libwebp-dev                   \
         make                          \
-        openssl1.1-compat-dev         \
+        openssl-dev                   \
         pango-dev                     \
         pulseaudio-dev                \
         util-linux-dev
