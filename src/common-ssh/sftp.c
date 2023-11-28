@@ -472,7 +472,7 @@ static int guac_common_ssh_sftp_ack_handler(guac_user* user,
     if (status == GUAC_PROTOCOL_STATUS_SUCCESS) {
 
         /* Attempt read into buffer */
-        char buffer[4096];
+        char buffer[1024*64];
         int bytes_read = libssh2_sftp_read(file, buffer, sizeof(buffer)); 
 
         /* If bytes read, send as blob */
