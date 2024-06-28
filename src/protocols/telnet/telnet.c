@@ -53,6 +53,7 @@ static const telnet_telopt_t __telnet_options[] = {
     { TELNET_TELOPT_MSSP,        TELNET_WONT, TELNET_DO   },
     { TELNET_TELOPT_NAWS,        TELNET_WILL, TELNET_DONT },
     { TELNET_TELOPT_NEW_ENVIRON, TELNET_WILL, TELNET_DONT },
+    { TELNET_TELOPT_SGA,         TELNET_WILL, TELNET_DO   },
     { -1, 0, 0 }
 };
 

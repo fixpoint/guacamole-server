@@ -472,7 +472,7 @@ static int guac_common_ssh_sftp_ack_handler(guac_user* user,
     if (status == GUAC_PROTOCOL_STATUS_SUCCESS) {
 
         /* Attempt read into buffer */
-        char buffer[4096];
+        char buffer[1024*64];
         int bytes_read = libssh2_sftp_read(file, buffer, sizeof(buffer)); 
 
         /* If bytes read, send as blob */
@@ -515,8 +515,15 @@ static int guac_common_ssh_sftp_ack_handler(guac_user* user,
     }
 
     /* Otherwise, return stream to user */
-    else
+    else {
         guac_user_free_stream(user, stream);
+
+        /* Close file */
+        if (libssh2_sftp_close(file) == 0)
+            guac_user_log(user, GUAC_LOG_DEBUG, "File closed");
+        else
+            guac_user_log(user, GUAC_LOG_INFO, "Unable to close file");
+    }
 
     return 0;
 }
